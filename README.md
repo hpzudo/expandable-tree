@@ -5,4 +5,5 @@ The choosen <b>architecture</b> (NgRx + Wizard component encapsulating the folde
 
 <br><br>
 NgRx helps to apply the State pattern design solution so the app follows variable inmmutability and prevent potential mutability/side-effects changes issues.
+<br>
 The Wizard helps to 'orchestrate' the actions from its child component which only receives data, display it and outputs the upcoming user events.
