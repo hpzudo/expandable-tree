@@ -1,0 +1,40 @@
+.mat-tree__container {
+  background-color: #e3e3e3;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.mat-tree__node {
+  padding: 0 10px;
+  opacity: 1;
+  overflow-x: visible;
+  min-width: 100px;
+  min-height: 40px;
+  &:hover {
+    cursor: pointer;
+    background-color: lightgrey;
+  }
+}
+
+.mat-tree__selected-node {
+  background-color: lightgrey;
+}
+
+.mat-tree__mat-icon {
+  vertical-align: middle;
+}
+
+.mat-tree-node__text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 320px;
+}
+
+.mat-tree__button {
+  background-color: transparent;
+}
+
+.leaf-node__actions {
+  display: flex;
+}

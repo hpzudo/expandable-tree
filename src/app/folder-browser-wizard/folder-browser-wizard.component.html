@@ -1,0 +1,21 @@
+<ng-container *ngIf="vm$ | ngrxPush as vm; else loading">
+  <ng-container *ngIf="!vm.loadingFolders; else loadingFolders">
+    <h3><span>Best Video Games of All Time</span></h3>
+    <app-folder-browser [nodes]="vm.folders" [selectedNodeId]="vm.selectedNodeId" (selectedNode)="onNodeSelected($event)" (previewNode)="onNodePreview($event)"></app-folder-browser>
+  </ng-container>
+</ng-container>
+
+<!-- Loading templates -->
+
+<ng-template #loadingFolders>
+  <!-- TODO: add loading placeholder animation -->
+  Loading folders, please wait...
+</ng-template>
+
+<ng-template #loading>
+  Loading, please wait...
+</ng-template>
+
+
+
+

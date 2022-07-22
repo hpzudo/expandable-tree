@@ -1,0 +1,72 @@
+<ng-container *ngrxLet="vm$; let vm">
+  <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="mat-tree__container disable-text-selection">
+    <!-- Leaf nodes -->
+    <mat-tree-node
+      *matTreeNodeDef="let node"
+      matTreeNodePadding
+      class="mat-tree__node"
+      [id]="node.id"
+      [title]="node.description"
+      [ngClass]="{ 'mat-tree__selected-node': node.id === vm.selectedNodeId }"
+      (click)="nodeClick(node, vm.selectedNodeId)"
+    >
+      <ng-container *ngIf="vm.nodesLoading && vm.selectedNodeId === node.id; else showFileIcon">
+        <div>
+          <mat-spinner [diameter]="20" [style.margin-right.px]="10"></mat-spinner>
+        </div>
+      </ng-container>
+      <ng-template #showFileIcon>
+          <mat-icon class="mat-tree__mat-icon" [style.margin-right.px]="5">text_snippet</mat-icon>
+      </ng-template>
+      <span class="mat-tree-node__text">{{ node.name }}</span>
+      <div class="spacer"></div>
+      <div *ngIf="node.id === vm.selectedNodeId" [@fadeInOut] class="leaf-node__actions">
+        <div class="spacer"></div>
+        <button
+          class="mat-tree__button"
+          mat-icon-button
+          (click)="nodePreview(node)"
+        >
+          <mat-icon class="mat-tree__mat-icon" [title]="'Preview File'">preview</mat-icon>
+        </button>
+      </div>
+    </mat-tree-node>
+
+    <!-- Expandable nodes -->
+    <mat-tree-node
+      *matTreeNodeDef="let node; when: hasChild"
+      class="mat-tree__node"
+      matTreeNodePadding
+      matTreeNodeToggle
+      [id]="node.id"
+      [title]="node.description"
+      [ngClass]="{ 'mat-tree__selected-node': node.id === vm.selectedNodeId }"
+      (click)="nodeClick(node, vm.selectedNodeId)"
+    >
+      <div
+        [style.min-width.px]="100"
+        class="mat-tree-node"
+        [ngClass]="{ 'mat-tree__selected-node': node.id === vm.selectedNodeId }"
+      >
+        <button class="mat-tree__button" mat-icon-button>
+          <ng-container *ngIf="vm.nodesLoading && vm.selectedNodeId === node.id; else showFolderIcon">
+            <div>
+              <mat-spinner [diameter]="20" [style.margin-left.px]="10"></mat-spinner>
+            </div>
+          </ng-container>
+          <ng-template #showFolderIcon>
+            <div>
+              <mat-icon
+                class="mat-icon-rtl-mirror mat-tree__mat-icon"
+                [ngClass]="{ 'mat-tree__new-folder-icon': !treeControl.isExpanded(node) }"
+              >
+                {{ treeControl.isExpanded(node) ? 'folder' : 'create_new_folder' }}
+              </mat-icon>
+            </div>
+          </ng-template>
+        </button>
+        <span class="mat-tree-node__text">{{ node.name }}</span>
+      </div>
+    </mat-tree-node>
+  </mat-tree>
+</ng-container>
