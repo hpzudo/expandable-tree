@@ -4,7 +4,7 @@ Little expandable tree exercise.
 NOTES:
 <br>
 <br>
--> Using mocked data
+-> Using mocked data (files are just JSON objects and the content is a simple string instead of a File, Blob, XML, etc.)
 <br>
 <br>
 -> The chosen <b>architecture</b> (NgRx + Wizard component encapsulating the folders browser presentational component) is kind of a 'overkill' solution for this exercise but on the other hand it's more scalable, less reactive and more maintainable for future changes (e.g.: Adding CRUD, sort or filter functionalities).
